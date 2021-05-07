@@ -1,0 +1,22 @@
+{
+  "apiVersion": "apps/v1",
+  "kind": "Deployment",
+  "metadata": { "name": "aesurance-frontend" },
+  "spec": {
+    "replicas": 3,
+    "selector": { "matchLabels": { "app": "aesurance-frontend" } },
+    "template": {
+      "metadata": { "labels": { "app": "aesurance-frontend" } },
+      "spec": {
+        "terminationGracePeriodSeconds": 30,
+        "containers": [
+          {
+            "name": "aesurance-frontend",
+            "image": "registry.digitalocean.com/neutrino/aesurance-frontend",
+            "imagePullPolicy": "Always"
+          }
+        ]
+      }
+    }
+  }
+}
