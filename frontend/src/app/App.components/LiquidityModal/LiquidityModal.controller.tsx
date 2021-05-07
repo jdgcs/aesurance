@@ -2,7 +2,6 @@ import { AesuranceContract, aesuranceContracts } from 'helpers/aesuranceContract
 import * as React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { State } from 'reducers'
-import web3 from 'web3'
 
 import { hideLiquidity } from './LiquidityModal.actions'
 import { LiquidityModalView } from './LiquidityModal.view'
@@ -29,7 +28,7 @@ export const LiquidityModal = ({ }: LiquidityModalProps) => {
       //   .send({ value: premium })
         console.log('Add liquidity 0')
     if (insuranceId === 1)
-      //contracts.AesuranceLife.methods.provideLiquidity().send({ value: web3.utils.toWei(premium as any, 'ether') })
+      //contracts.AesuranceLife.methods.provideLiquidity().send({ value: premium })
       console.log('Add liquidity 1')
     if (insuranceId === 2)
       // contracts.AesuranceFlight.methods
