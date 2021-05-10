@@ -20,7 +20,7 @@ import BrowserWindowMessageConnection from "@aeternity/aepp-sdk/es/utils/aepp-wa
 import { hideInsurance } from "./InsuranceModal.actions";
 import { InsuranceModalView } from "./InsuranceModal.view";
 
-const NODE_URL = "https://testnet.aeternity.io";
+const NODE_URL = "https://mainnet.aeternity.io";
 const COMPILER_URL = "https://compiler.aepps.com";
 
 type InsuranceModalProps = {};
@@ -97,6 +97,14 @@ export const InsuranceModal = ({}: InsuranceModalProps) => {
         selectedAccountAddress = await client.address();
         // In `client.rpcClient` you can find all information regarding to connected waellet
         walletName = client.rpcClient.info.name;
+
+        const result = await client.contractCall(
+          code, 'ct_2meHkLcAoZPrQj7P5WjFyJJRLJqRtv43z1QEbpcS1gHs9W8Q3g', 'register_oracle', [1, 1]
+        ).catch(function(e: any) {
+          console.log("resolve error: ", e);
+          return;
+        });
+        console.log(result)
       }
 
       client = await RpcAepp({
@@ -132,13 +140,7 @@ export const InsuranceModal = ({}: InsuranceModalProps) => {
       // Start looking for wallets
       await scanForWallets(); // Start looking for new wallets
 
-      // const result = await client.contractCall(
-      //   code, 'ct_KyJ2XAD52T4r1JWTVeUnH1BDigtgBft8AgHbzJvFDmYiDh84F', 'register_oracle', []
-      // ).catch(function(e: any) {
-      //   console.log("resolve error: ", e);
-      //   return;
-      // });
-      // console.log(result)
+
     })();
 
     console.log(insuranceId, target, premium);
