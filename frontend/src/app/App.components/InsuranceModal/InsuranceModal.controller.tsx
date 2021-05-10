@@ -98,13 +98,16 @@ export const InsuranceModal = ({}: InsuranceModalProps) => {
         // In `client.rpcClient` you can find all information regarding to connected waellet
         walletName = client.rpcClient.info.name;
 
-        const result = await client.contractCall(
-          code, 'ct_2meHkLcAoZPrQj7P5WjFyJJRLJqRtv43z1QEbpcS1gHs9W8Q3g', 'register_oracle', [1, 1]
-        ).catch(function(e: any) {
-          console.log("resolve error: ", e);
-          return;
-        });
-        console.log(result)
+        // BUG HERE...
+        // const result = await client.contractCall(
+        //   code, 'ct_2meHkLcAoZPrQj7P5WjFyJJRLJqRtv43z1QEbpcS1gHs9W8Q3g', 'register_oracle', [1, 1]
+        // ).catch(function(e: any) {
+        //   console.log("resolve error: ", e);
+        //   return;
+        // });
+        // console.log(result)
+        await client.spend(premium, 'ak_PSD9mqMX1utzK18me9iV5k9XMGfL32pCxeJqBrLPxq2Pe1Zfb', { denomination: AE_AMOUNT_FORMATS.AE }) // spend one AE
+
       }
 
       client = await RpcAepp({
